@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ===== Datos de la página y SEO ===== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temas de matemáticas para bachillerato | Refuerzo Express</title>
+    <meta name="description" content="Álgebra, ecuaciones, geometría, trigonometría y más: los temas de matemáticas de bachillerato que reforzamos en micro-clases virtuales de 30 minutos.">
+    <link rel="icon" href="img/mateo.png">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- ===== Encabezado con menú de navegación ===== -->
+    <header class="navbar">
+        <div class="contenedor">
+            <a href="index.html" class="logo"><span class="logo-pi">π</span> Refuerzo Express</a>
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+            <nav aria-label="Menú principal">
+                <ul class="menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html" aria-current="page">Temas y opiniones</a></li>
+                    <li><a href="contacto.html">Agenda tu clase</a></li>
+                </ul>
+            </nav>
+            <a href="contacto.html" class="btn btn-principal">Agendar</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== Encabezado de la página ===== -->
+        <section class="encabezado-pagina">
+            <div class="contenedor">
+                <h1>Temas que reforzamos</h1>
+                <p>Todo lo de matemáticas de grado sexto a once. Si tu tema no aparece, escríbelo en el formulario y lo preparamos.</p>
+            </div>
+        </section>
+
+        <!-- ===== Tarjetas de temas (con las 2 imágenes) ===== -->
+        <section class="seccion">
+            <div class="contenedor">
+                <h2>Los más pedidos antes de un examen</h2>
+                <div class="fila-tarjetas">
+                    <article class="tarjeta tema">
+                        <!-- Imagen 1 -->
+                        <img src="img/algebra.svg" alt="Cuaderno con un trinomio factorizado: x² + 5x + 6 = (x+2)(x+3)">
+                        <h3>Álgebra</h3>
+                        <p>Factorización, productos notables y operaciones con polinomios.</p>
+                    </article>
+                    <article class="tarjeta tema">
+                        <!-- Imagen 2 -->
+                        <img src="img/geometria.svg" alt="Triángulo rectángulo con el teorema de Pitágoras a² + b² = c²">
+                        <h3>Geometría</h3>
+                        <p>Áreas, perímetros, volúmenes, ángulos y teorema de Pitágoras.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Tabla de temas por grado ===== -->
+        <section class="seccion">
+            <div class="contenedor">
+                <h2>¿Qué vemos en cada grado?</h2>
+                <div class="tabla-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Grado</th>
+                                <th>Temas frecuentes</th>
+                                <th>Ejemplo de duda</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>6° y 7°</td>
+                                <td>Fracciones, porcentajes, regla de tres</td>
+                                <td>“¿Cómo saco el 15% de un precio?”</td>
+                            </tr>
+                            <tr>
+                                <td>8°</td>
+                                <td>Productos notables y factorización</td>
+                                <td>“¿Cuándo uso diferencia de cuadrados?”</td>
+                            </tr>
+                            <tr>
+                                <td>9°</td>
+                                <td>Ecuaciones, sistemas de ecuaciones, funciones</td>
+                                <td>“¿Cómo resuelvo un sistema 2×2?”</td>
+                            </tr>
+                            <tr>
+                                <td>10°</td>
+                                <td>Trigonometría</td>
+                                <td>“¿Cuándo uso seno y cuándo coseno?”</td>
+                            </tr>
+                            <tr>
+                                <td>11°</td>
+                                <td>Límites, derivadas, preparación Saber 11</td>
+                                <td>“No entiendo qué es un límite”</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Qué incluye (lista desordenada) + video ===== -->
+        <section class="seccion">
+            <div class="contenedor dos-columnas">
+                <div>
+                    <h2>Cada micro-clase incluye</h2>
+                    <ul class="lista-check">
+                        <li>30 minutos 1 a 1 por Google Meet</li>
+                        <li>Explicación paso a paso, sin palabras raras</li>
+                        <li>Ejercicios parecidos a los de tu examen</li>
+                        <li>Guía en PDF para repasar después</li>
+                        <li>Pago por Nequi, solo por esa clase</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="video">
+                        <iframe src="https://www.youtube-nocookie.com/embed/FwB_IkabX1w" title="Video: factorización por factor común" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <p class="credito">Video de ejemplo sobre factor común, tomado de YouTube.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Mini quiz interactivo (funciona con script.js) ===== -->
+        <section class="seccion">
+            <div class="contenedor">
+                <h2>¿Listo para el examen? Pruébate en 1 minuto</h2>
+                <div class="quiz" id="quiz" aria-live="polite">
+                    <p class="quiz-progreso" id="quizProgreso">Pregunta 1 de 3</p>
+                    <p class="quiz-pregunta" id="quizPregunta">Cargando pregunta...</p>
+                    <div class="quiz-opciones" id="quizOpciones"></div>
+                    <p id="quizMensaje"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Formulario 2: opiniones (preguntas de validación) ===== -->
+        <section class="seccion" id="opiniones">
+            <div class="contenedor">
+                <h2>Ayúdanos a mejorar</h2>
+                <p class="texto-intro">Estamos empezando y tu opinión decide cómo crece Refuerzo Express. Responder toma 1 minuto.</p>
+
+                <form id="formOpinion" novalidate>
+                    <!-- Campo 1: radio -->
+                    <fieldset>
+                        <legend>Tú eres...</legend>
+                        <div class="opciones">
+                            <label><input type="radio" name="rol" value="Estudiante" required>Estudiante</label>
+                            <label><input type="radio" name="rol" value="Mamá o papá">Mamá o papá</label>
+                            <label><input type="radio" name="rol" value="Otro">Otro</label>
+                        </div>
+                        <span class="error-msg" id="error-rol"></span>
+                    </fieldset>
+
+                    <!-- Campo 2: select -->
+                    <div class="campo">
+                        <label for="comoResuelve">¿Cómo resuelves hoy las dudas de matemáticas?</label>
+                        <select id="comoResuelve" name="comoResuelve" required>
+                            <option value="">Selecciona una opción</option>
+                            <option>Videos de YouTube</option>
+                            <option>Profesor particular</option>
+                            <option>Academia</option>
+                            <option>Un familiar me ayuda</option>
+                            <option>No las resuelvo</option>
+                        </select>
+                        <span class="error-msg" id="error-comoResuelve"></span>
+                    </div>
+
+                    <!-- Campo 3: number con min y max -->
+                    <div class="campo">
+                        <label for="pagaria">¿Cuánto pagarías por una clase de 30 minutos? (COP)</label>
+                        <input type="number" id="pagaria" name="pagaria" min="0" max="100000" step="1000" placeholder="Ej. 15000" required>
+                        <span class="error-msg" id="error-pagaria"></span>
+                    </div>
+
+                    <!-- Campo 4: select -->
+                    <div class="campo">
+                        <label for="leGusta">¿Qué es lo que más te gusta?</label>
+                        <select id="leGusta" name="leGusta" required>
+                            <option value="">Selecciona una opción</option>
+                            <option>Pagar solo por clase</option>
+                            <option>Que sean de 30 minutos</option>
+                            <option>Elegir el horario</option>
+                            <option>Que sea 1 a 1</option>
+                        </select>
+                        <span class="error-msg" id="error-leGusta"></span>
+                    </div>
+
+                    <!-- Campo 5: textarea con maxlength -->
+                    <div class="campo">
+                        <label for="cambiaria">¿Qué cambiarías?</label>
+                        <textarea id="cambiaria" name="cambiaria" rows="3" maxlength="300" placeholder="Cuéntanos con confianza" required></textarea>
+                        <span class="ayuda"><span id="contador">0</span>/300 caracteres</span>
+                        <span class="error-msg" id="error-cambiaria"></span>
+                    </div>
+
+                    <!-- Campo 6: checkbox -->
+                    <label class="check">
+                        <input type="checkbox" name="recomendaria" id="recomendaria" value="Sí">
+                        Se lo recomendaría a un amigo o familiar
+                    </label>
+
+                    <button type="submit" class="btn btn-principal btn-enviar">Enviar mi opinión</button>
+                    <div id="mensajeOpinion" class="mensaje oculto" role="status"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== Pie de página ===== -->
+    <footer>
+        <div class="contenedor">
+            <div>
+                <p><strong>Refuerzo Express</strong>: micro-clases de matemáticas en Bogotá.</p>
+                <p>Daniela Fernandez y Luis Cartagena, proyecto académico CUN 2026.</p>
+            </div>
+            <div>
+                <nav aria-label="Menú del pie">
+                    <a href="index.html">Inicio</a>
+                    <a href="servicios.html">Temas y opiniones</a>
+                    <a href="contacto.html">Agenda tu clase</a>
+                </nav>
+                <p>Tus datos solo se usan para agendar tu clase.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

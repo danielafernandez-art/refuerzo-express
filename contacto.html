@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ===== Datos de la página y SEO ===== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda tu clase de matemáticas | Refuerzo Express</title>
+    <meta name="description" content="Agenda una micro-clase virtual de matemáticas de 30 minutos por $15.000. Te confirmamos por WhatsApp y te conectas por Google Meet.">
+    <link rel="icon" href="img/mateo.png">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- ===== Encabezado con menú de navegación ===== -->
+    <header class="navbar">
+        <div class="contenedor">
+            <a href="index.html" class="logo"><span class="logo-pi">π</span> Refuerzo Express</a>
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+            <nav aria-label="Menú principal">
+                <ul class="menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Temas y opiniones</a></li>
+                    <li><a href="contacto.html" aria-current="page">Agenda tu clase</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== Encabezado de la página ===== -->
+        <section class="encabezado-pagina">
+            <div class="contenedor">
+                <h1>Agenda tu micro-clase</h1>
+                <p>Llena el formulario y te escribimos por WhatsApp para confirmar la hora. Clase de 30 minutos por $15.000.</p>
+            </div>
+        </section>
+
+        <!-- ===== Formulario 1: agendar clase ===== -->
+        <section class="seccion">
+            <div class="contenedor dos-columnas">
+                <form id="formAgenda" novalidate>
+                    <!-- Campo 1: texto con maxlength y pattern -->
+                    <div class="campo">
+                        <label for="nombre">Nombre del estudiante</label>
+                        <input type="text" id="nombre" name="nombre" required maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{3,50}" placeholder="Ej. Mateo Rodríguez" autocomplete="name">
+                        <span class="error-msg" id="error-nombre"></span>
+                    </div>
+
+                    <!-- Campo 2: teléfono con pattern (celular colombiano) -->
+                    <div class="campo">
+                        <label for="whatsapp">WhatsApp de contacto</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" required pattern="3[0-9]{9}" maxlength="10" placeholder="Ej. 3001234567" autocomplete="tel">
+                        <span class="error-msg" id="error-whatsapp"></span>
+                    </div>
+
+                    <!-- Campo 3: número con min y max -->
+                    <div class="campo">
+                        <label for="grado">Grado que cursa</label>
+                        <input type="number" id="grado" name="grado" required min="6" max="11" placeholder="6 a 11">
+                        <span class="error-msg" id="error-grado"></span>
+                    </div>
+
+                    <!-- Campo 4: select -->
+                    <div class="campo">
+                        <label for="tema">Tema a reforzar</label>
+                        <select id="tema" name="tema" required>
+                            <option value="">Selecciona un tema</option>
+                            <option>Fracciones y porcentajes</option>
+                            <option>Álgebra y factorización</option>
+                            <option>Ecuaciones y sistemas</option>
+                            <option>Geometría</option>
+                            <option>Trigonometría</option>
+                            <option>Cálculo (límites y derivadas)</option>
+                            <option>Otro</option>
+                        </select>
+                        <span class="error-msg" id="error-tema"></span>
+                    </div>
+
+                    <!-- Campo 5: fecha (el mínimo es hoy, lo pone script.js) -->
+                    <div class="campo">
+                        <label for="fechaExamen">¿Cuándo es el examen?</label>
+                        <input type="date" id="fechaExamen" name="fechaExamen" required>
+                        <span class="ayuda" id="avisoFecha">Así priorizamos tu clase.</span>
+                        <span class="error-msg" id="error-fechaExamen"></span>
+                    </div>
+
+                    <!-- Campo 6: radio -->
+                    <fieldset>
+                        <legend>¿Quién llena el formulario?</legend>
+                        <div class="opciones">
+                            <label><input type="radio" name="quienLlena" value="Estudiante" required>Estudiante</label>
+                            <label><input type="radio" name="quienLlena" value="Acudiente">Mamá, papá o acudiente</label>
+                        </div>
+                        <span class="error-msg" id="error-quienLlena"></span>
+                    </fieldset>
+
+                    <!-- Campo 7: checkbox de autorización -->
+                    <label class="check">
+                        <input type="checkbox" id="autorizo" name="autorizo" value="Sí" required>
+                        Autorizo que me escriban por WhatsApp para agendar la clase.
+                    </label>
+                    <span class="error-msg" id="error-autorizo"></span>
+
+                    <button type="submit" class="btn btn-principal btn-enviar">Agendar mi clase</button>
+                    <div id="mensajeAgenda" class="mensaje oculto" role="status"></div>
+                </form>
+
+                <!-- Qué pasa después (lista ordenada) + imagen 1 -->
+                <div>
+                    <!-- Imagen 1 -->
+                    <img class="foto-circulo" src="img/chat.svg" alt="Burbujas de chat que representan la confirmación por WhatsApp">
+                    <h2>¿Qué pasa después?</h2>
+                    <ol class="lista-pasos vertical">
+                        <li>Te escribimos por WhatsApp el mismo día.</li>
+                        <li>Fijamos la hora y pagas $15.000 por Nequi.</li>
+                        <li>Te llega el link de Google Meet y tu guía de regalo.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Tabla de horarios + imagen 2 ===== -->
+        <section class="seccion">
+            <div class="contenedor dos-columnas">
+                <div>
+                    <h2>Horarios disponibles</h2>
+                    <div class="tabla-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Día</th>
+                                    <th>Franja</th>
+                                    <th>Ideal para</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Lunes a viernes</td>
+                                    <td>3:00 p. m. a 8:00 p. m.</td>
+                                    <td>Después del colegio</td>
+                                </tr>
+                                <tr>
+                                    <td>Sábado</td>
+                                    <td>8:00 a. m. a 4:00 p. m.</td>
+                                    <td>Repaso de la semana</td>
+                                </tr>
+                                <tr>
+                                    <td>Domingo</td>
+                                    <td>4:00 p. m. a 8:00 p. m.</td>
+                                    <td>Examen el lunes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Imagen 2 -->
+                <img class="foto-circulo" src="img/calendario.svg" alt="Calendario con un día marcado y un reloj, que representa elegir el horario de la clase">
+            </div>
+        </section>
+
+        <!-- ===== Video + preguntas frecuentes ===== -->
+        <section class="seccion">
+            <div class="contenedor dos-columnas">
+                <div>
+                    <h2>Mira un ejemplo antes de agendar</h2>
+                    <div class="video">
+                        <iframe src="https://www.youtube-nocookie.com/embed/C6wx1RcnTvE" title="Video: ejemplo de ecuación cuadrática resuelta" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <p class="credito">Video de ejemplo sobre ecuaciones cuadráticas, tomado de YouTube.</p>
+                </div>
+                <div>
+                    <h2>Preguntas frecuentes</h2>
+                    <details>
+                        <summary>¿Necesito instalar algo?</summary>
+                        <p>No. Te enviamos un link de Google Meet que se abre desde el celular o el computador.</p>
+                    </details>
+                    <details>
+                        <summary>¿Puedo agendar para el mismo día?</summary>
+                        <p>Sí, si hay cupo en la franja. Por eso te pedimos la fecha del examen.</p>
+                    </details>
+                    <details>
+                        <summary>¿Tengo que comprar un paquete?</summary>
+                        <p>No. Pagas solo la clase que necesitas, $15.000 por 30 minutos.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== Pie de página ===== -->
+    <footer>
+        <div class="contenedor">
+            <div>
+                <p><strong>Refuerzo Express</strong>: micro-clases de matemáticas en Bogotá.</p>
+                <p>Daniela Fernandez y Luis Cartagena, proyecto académico CUN 2026.</p>
+            </div>
+            <div>
+                <nav aria-label="Menú del pie">
+                    <a href="index.html">Inicio</a>
+                    <a href="servicios.html">Temas y opiniones</a>
+                    <a href="contacto.html">Agenda tu clase</a>
+                </nav>
+                <p>Tus datos solo se usan para agendar tu clase.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

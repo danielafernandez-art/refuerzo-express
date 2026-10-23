@@ -1,0 +1,820 @@
+/* =========================================================
+   Refuerzo Express - Hoja de estilos (estilos.css)
+   Estilo: pizarra + cuaderno cuadriculado + marcadores
+   ========================================================= */
+
+/* --- Tipografías incluidas en la carpeta fuentes/ (funcionan sin internet) --- */
+@font-face { font-family: "Gochi Hand"; src: url("fuentes/gochi-hand.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("fuentes/poppins-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("fuentes/poppins-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("fuentes/poppins-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+/* --- Variables de color y tipografía --- */
+:root {
+    --pizarra: #14453D;        /* verde tablero */
+    --pizarra-oscura: #0E332D;
+    --tiza: #F4F7F2;           /* blanco tiza */
+    --tinta: #1E1E1E;          /* contornos y texto */
+    --papel: #FFFFFF;
+    --cuadricula: #DCEBF2;     /* líneas del cuaderno */
+    --rosa: #FF8AD8;
+    --celeste: #4FD5DE;
+    --amarillo: #FFE45C;
+    --verde: #7BE3A0;
+    --lila: #C9A2F5;
+    --error: #C62828;
+    --fuente-mano: "Gochi Hand", "Comic Sans MS", cursive;
+    --fuente-texto: "Poppins", Arial, sans-serif;
+}
+
+/* --- SELECTOR DE ETIQUETA: reinicio básico --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* SELECTOR DE ETIQUETA: body */
+body {
+    font-family: var(--fuente-texto);
+    color: var(--tinta);
+    line-height: 1.6;
+    /* Fondo de cuaderno cuadriculado hecho con degradados */
+    background-color: var(--papel);
+    background-image:
+        linear-gradient(var(--cuadricula) 1px, transparent 1px),
+        linear-gradient(90deg, var(--cuadricula) 1px, transparent 1px);
+    background-size: 28px 28px;
+}
+
+/* SELECTOR DE ETIQUETA: títulos */
+h1, h2, h3 {
+    font-family: var(--fuente-mano);
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin-bottom: 1rem;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+}
+
+/* Foco visible para navegar con teclado */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--rosa);
+    outline-offset: 3px;
+}
+
+/* --- Contenedor general (SELECTOR DE CLASE) --- */
+.contenedor {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+.seccion {
+    padding: 4.5rem 0;
+}
+
+.texto-intro {
+    max-width: 62ch;
+    margin-bottom: 2rem;
+}
+
+/* =========================================================
+   MENÚ DE NAVEGACIÓN (maquetado con FLEXBOX #1)
+   ========================================================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--pizarra);
+    color: var(--tiza);
+    border-bottom: 4px solid var(--tinta);
+}
+
+.navbar .contenedor {
+    display: flex;                 /* Flexbox */
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 0;
+}
+
+.logo {
+    font-family: var(--fuente-mano);
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: var(--tiza);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-pi {
+    background: var(--amarillo);
+    color: var(--tinta);
+    border: 3px solid var(--tinta);
+    border-radius: 10px;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+    transform: rotate(-8deg);
+}
+
+.menu {
+    display: flex;                 /* Flexbox */
+    list-style: none;
+    gap: 1.6rem;
+    align-items: center;
+}
+
+.menu a {
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.2rem 0;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.25s ease;   /* animación con transition */
+}
+
+.menu a:hover,
+.menu a[aria-current="page"] {
+    border-color: var(--amarillo);
+}
+
+.menu-toggle {
+    display: none;
+    background: var(--amarillo);
+    border: 3px solid var(--tinta);
+    border-radius: 10px;
+    font-size: 1.4rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    cursor: pointer;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.btn {
+    display: inline-block;
+    font-family: var(--fuente-texto);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border: 3px solid var(--tinta);
+    border-radius: 999px;
+    box-shadow: 4px 4px 0 var(--tinta);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--tinta);
+}
+
+.btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--tinta);
+}
+
+.btn-principal {
+    background: var(--amarillo);
+    color: var(--tinta);
+}
+
+.btn-secundario {
+    background: var(--papel);
+    color: var(--tinta);
+}
+
+/* =========================================================
+   HERO: la pizarra con la ecuación que se resuelve sola
+   ========================================================= */
+.hero {
+    background: var(--pizarra);
+    color: var(--tiza);
+    border-bottom: 4px solid var(--tinta);
+    overflow: hidden;
+}
+
+.hero .contenedor {
+    display: flex;                 /* Flexbox */
+    align-items: center;
+    gap: 3rem;
+    padding: 4rem 0 4.5rem;
+}
+
+.hero-texto {
+    flex: 1 1 50%;
+}
+
+.hero h1 {
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    max-width: 46ch;
+    margin-bottom: 2rem;
+    color: #DCE8E3;
+}
+
+.hero-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.hero .hero-precio {
+    margin-top: 1.5rem;
+    font-family: var(--fuente-mano);
+    font-size: 2rem;
+    color: var(--amarillo);
+}
+
+/* El tablero donde se escribe la ecuación */
+.tablero {
+    flex: 1 1 45%;
+    position: relative;
+    background: var(--pizarra-oscura);
+    border: 10px solid #B9835A;    /* marco de madera */
+    border-radius: 14px;
+    padding: 2rem 2rem 2rem;
+    min-height: 330px;
+    box-shadow: 8px 8px 0 var(--tinta);
+}
+
+.tablero ol {
+    list-style: none;
+    font-family: var(--fuente-mano);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+/* Cada paso aparece como si se escribiera con tiza (@keyframes) */
+.paso-tiza {
+    opacity: 0;
+    animation: escribir 0.6s ease forwards;
+}
+
+.paso-tiza:nth-child(1) { animation-delay: 0.3s; }
+.paso-tiza:nth-child(2) { animation-delay: 1.3s; }
+.paso-tiza:nth-child(3) { animation-delay: 2.3s; }
+.paso-tiza:nth-child(4) { animation-delay: 3.3s; }
+
+.paso-tiza:last-child {
+    color: var(--amarillo);
+}
+
+.paso-tiza small {
+    font-size: 0.55em;
+    color: #9FC7BC;
+    margin-left: 0.6rem;
+}
+
+@keyframes escribir {
+    from { opacity: 0; clip-path: inset(0 100% 0 0); }
+    to   { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+.tablero img {
+    position: absolute;
+    width: 190px;
+    right: -30px;
+    bottom: -40px;
+}
+
+/* =========================================================
+   TARJETAS DE BENEFICIOS (maquetado con FLEXBOX #2)
+   ========================================================= */
+.fila-tarjetas {
+    display: flex;                 /* Flexbox */
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.tarjeta {
+    flex: 1 1 260px;
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: 18px;
+    padding: 1.6rem;
+    box-shadow: 6px 6px 0 var(--tinta);
+}
+
+.tarjeta h3 {
+    font-size: 1.8rem;
+    margin: 0.8rem 0 0.4rem;
+}
+
+.icono {
+    width: 3.4rem;
+    height: 3.4rem;
+    border: 3px solid var(--tinta);
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-size: 1.6rem;
+}
+
+.fondo-celeste { background: var(--celeste); }
+.fondo-rosa    { background: var(--rosa); }
+.fondo-amarillo{ background: var(--amarillo); }
+.fondo-verde   { background: var(--verde); }
+.fondo-lila    { background: var(--lila); }
+
+/* Franja del incentivo */
+.incentivo {
+    margin-top: 2rem;
+    background: var(--amarillo);
+    border: 3px dashed var(--tinta);
+    border-radius: 14px;
+    padding: 1rem 1.4rem;
+    font-weight: 600;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* =========================================================
+   PASOS (lista ordenada)
+   ========================================================= */
+.lista-pasos {
+    list-style: none;
+    counter-reset: paso;
+    display: flex;                 /* Flexbox */
+    flex-wrap: wrap;
+    gap: 1.2rem;
+}
+
+.lista-pasos li {
+    counter-increment: paso;
+    flex: 1 1 220px;
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: 14px;
+    padding: 1.2rem 1.2rem 1.2rem 4.2rem;
+    position: relative;
+}
+
+.lista-pasos li::before {
+    content: counter(paso);
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    width: 2.3rem;
+    height: 2.3rem;
+    border: 3px solid var(--tinta);
+    border-radius: 50%;
+    background: var(--celeste);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+}
+
+/* =========================================================
+   TABLAS
+   ========================================================= */
+.tabla-scroll {
+    overflow-x: auto;
+    border: 3px solid var(--tinta);
+    border-radius: 16px;
+    box-shadow: 6px 6px 0 var(--tinta);
+    background: var(--papel);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+}
+
+th, td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid #E3E3E3;
+}
+
+th {
+    background: var(--pizarra);
+    color: var(--tiza);
+    font-weight: 600;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.col-destacada {
+    background: #FFF7CC;
+    font-weight: 600;
+}
+
+/* =========================================================
+   CALCULADORA DE AHORRO
+   ========================================================= */
+.calculadora {
+    display: flex;                 /* Flexbox */
+    flex-wrap: wrap;
+    gap: 2rem;
+    background: var(--lila);
+    border: 3px solid var(--tinta);
+    border-radius: 22px;
+    padding: 2rem;
+    box-shadow: 8px 8px 0 var(--tinta);
+}
+
+.calculadora form {
+    flex: 1 1 280px;
+}
+
+.resultado {
+    flex: 1 1 280px;
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: 16px;
+    padding: 1.5rem;
+    min-height: 180px;
+}
+
+.resultado .cifra {
+    font-family: var(--fuente-mano);
+    font-size: 3rem;
+    line-height: 1;
+    margin: 0.4rem 0;
+}
+
+/* =========================================================
+   FORMULARIOS
+   ========================================================= */
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+label, legend {
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+input[type="text"], input[type="tel"], input[type="number"],
+input[type="date"], input[type="email"], select, textarea {
+    font: inherit;
+    padding: 0.7rem 0.9rem;
+    border: 3px solid var(--tinta);
+    border-radius: 12px;
+    background: var(--papel);
+}
+
+fieldset {
+    border: none;
+    margin-bottom: 1.1rem;
+}
+
+.opciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+/* Las opciones de radio se ven como fichas */
+.opciones label {
+    font-weight: 400;
+    border: 3px solid var(--tinta);
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+    cursor: pointer;
+    background: var(--papel);
+    transition: background-color 0.2s ease;
+}
+
+.opciones input {
+    margin-right: 0.4rem;
+    accent-color: var(--pizarra);
+}
+
+.opciones label:has(input:checked) {
+    background: var(--amarillo);
+}
+
+.check {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    font-weight: 400;
+}
+
+.check input {
+    margin-top: 0.35rem;
+    accent-color: var(--pizarra);
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.ayuda {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+/* Mensajes de error y de éxito que muestra JavaScript */
+.error-msg {
+    color: var(--error);
+    font-size: 0.88rem;
+    font-weight: 600;
+    min-height: 1.2em;
+}
+
+.campo-invalido {
+    border-color: var(--error) !important;
+    background: #FFF1F1 !important;
+}
+
+.mensaje {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 3px solid var(--tinta);
+    border-radius: 14px;
+    font-weight: 600;
+}
+
+.mensaje.exito { background: var(--verde); }
+.mensaje.fallo { background: #FFD3D3; }
+.mensaje.cargando { background: #EEE; }
+
+.oculto {
+    display: none;
+}
+
+/* =========================================================
+   SELECTOR DE ID: formulario principal de agendamiento
+   ========================================================= */
+#formAgenda {
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: 22px;
+    padding: 2rem;
+    box-shadow: 8px 8px 0 var(--tinta);
+}
+
+/* SELECTOR DE ID: formulario de opiniones */
+#formOpinion {
+    background: var(--celeste);
+    border: 3px solid var(--tinta);
+    border-radius: 22px;
+    padding: 2rem;
+    box-shadow: 8px 8px 0 var(--tinta);
+}
+
+/* =========================================================
+   BLOQUES DE DOS COLUMNAS (texto + imagen)
+   ========================================================= */
+.dos-columnas {
+    display: flex;                 /* Flexbox */
+    gap: 3rem;
+    align-items: center;
+}
+
+.dos-columnas > * {
+    flex: 1 1 50%;
+}
+
+.foto-circulo {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/* Video incrustado responsive */
+.video {
+    aspect-ratio: 16 / 9;
+    border: 3px solid var(--tinta);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 8px 8px 0 var(--tinta);
+    background: var(--pizarra);
+}
+
+.video iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.credito {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 0.8rem;
+}
+
+/* Encabezado de páginas internas */
+.encabezado-pagina {
+    background: var(--pizarra);
+    color: var(--tiza);
+    border-bottom: 4px solid var(--tinta);
+    padding: 3rem 0;
+}
+
+.encabezado-pagina h1 {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+}
+
+.encabezado-pagina p {
+    color: #DCE8E3;
+    max-width: 60ch;
+}
+
+/* Tarjetas de temas con imagen */
+.tema img {
+    border-radius: 12px;
+    margin-bottom: 0.6rem;
+}
+
+/* Lista con viñetas de check */
+.lista-check {
+    list-style: none;
+}
+
+.lista-check li {
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 0.6rem;
+}
+
+.lista-check li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    background: var(--verde);
+    border: 2px solid var(--tinta);
+    border-radius: 6px;
+    width: 1.4rem;
+    height: 1.4rem;
+    display: grid;
+    place-items: center;
+    font-size: 0.8rem;
+}
+
+/* =========================================================
+   MINI QUIZ
+   ========================================================= */
+.quiz {
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: 22px;
+    padding: 2rem;
+    box-shadow: 8px 8px 0 var(--tinta);
+}
+
+.quiz-pregunta {
+    font-family: var(--fuente-mano);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.quiz-opciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.quiz-opciones button {
+    font: inherit;
+    font-weight: 600;
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: 12px;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.quiz-opciones button:hover { background: #F1F1F1; }
+.quiz-opciones .correcta { background: var(--verde); }
+.quiz-opciones .incorrecta { background: #FFC2C2; }
+
+.quiz-progreso {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+/* Preguntas frecuentes */
+details {
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+summary {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+details p {
+    margin-top: 0.6rem;
+}
+
+/* =========================================================
+   PIE DE PÁGINA
+   ========================================================= */
+footer {
+    background: var(--tinta);
+    color: #EDEDED;
+    padding: 2.5rem 0;
+    font-size: 0.92rem;
+}
+
+footer .contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+}
+
+footer nav a {
+    margin-right: 1rem;
+}
+
+/* =========================================================
+   RESPONSIVE: 3 puntos de corte
+   ========================================================= */
+
+/* 1) Tablet: hasta 1024px -> el hero y las columnas se apilan */
+@media (max-width: 1024px) {
+    .hero .contenedor,
+    .dos-columnas {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero p { margin-left: auto; margin-right: auto; }
+    .hero-botones { justify-content: center; }
+    .tablero { width: 100%; max-width: 560px; text-align: left; }
+}
+
+/* 2) Celular: hasta 768px -> el menú se convierte en hamburguesa */
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    .navbar .btn { display: none; }
+    .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--pizarra);
+        border-bottom: 4px solid var(--tinta);
+        padding: 1rem 0 1.4rem;
+    }
+    .menu.abierto { display: flex; }
+    .seccion { padding: 3rem 0; }
+    .tablero img { width: 110px; right: -10px; }
+}
+
+/* 3) Celular pequeño: hasta 480px -> botones a lo ancho y menos relleno */
+@media (max-width: 480px) {
+    .btn { width: 100%; text-align: center; }
+    .calculadora, #formAgenda, #formOpinion, .quiz { padding: 1.3rem; }
+    .tablero { padding: 1.4rem; min-height: 280px; }
+    .logo { font-size: 1.5rem; }
+}
+
+/* Si la persona prefiere menos movimiento, mostramos todo sin animar */
+@media (prefers-reduced-motion: reduce) {
+    .paso-tiza { animation: none; opacity: 1; }
+    .btn, .menu a { transition: none; }
+}
+
+/* Pasos uno debajo del otro (columna lateral de contacto) */
+.lista-pasos.vertical {
+    flex-direction: column;
+}
+
+/* El formulario de opiniones no ocupa todo el ancho */
+#formOpinion {
+    max-width: 760px;
+}
+
+/* Separación del botón de envío en los formularios */
+.btn-enviar {
+    margin-top: 1.2rem;
+}

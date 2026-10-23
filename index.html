@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ===== Datos de la página y SEO ===== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refuerzo Express | Clases de refuerzo de matemáticas online en Bogotá</title>
+    <meta name="description" content="Micro-clases virtuales de matemáticas de 30 minutos para estudiantes de bachillerato. Resuelve tu duda antes del examen y paga solo $15.000 por sesión, sin mensualidades.">
+    <link rel="icon" href="img/mateo.png">
+    <!-- Hoja de estilos propia -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- ===== Encabezado con menú de navegación ===== -->
+    <header class="navbar">
+        <div class="contenedor">
+            <a href="index.html" class="logo"><span class="logo-pi">π</span> Refuerzo Express</a>
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+            <nav aria-label="Menú principal">
+                <ul class="menu">
+                    <li><a href="index.html" aria-current="page">Inicio</a></li>
+                    <li><a href="servicios.html">Temas y opiniones</a></li>
+                    <li><a href="contacto.html">Agenda tu clase</a></li>
+                </ul>
+            </nav>
+            <a href="contacto.html" class="btn btn-principal">Agendar</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== HERO: título con el beneficio + ecuación en la pizarra ===== -->
+        <section class="hero">
+            <div class="contenedor">
+                <div class="hero-texto">
+                    <h1>Tu duda de matemáticas, resuelta en 30 minutos</h1>
+                    <p>Agenda una micro-clase virtual 1 a 1 y un tutor te explica paso a paso el tema que te frena antes del examen. Sin mensualidades: pagas solo la clase que necesitas.</p>
+                    <div class="hero-botones">
+                        <a href="contacto.html" class="btn btn-principal">Agenda tu clase</a>
+                        <a href="#calculadora" class="btn btn-secundario">Calcula cuánto ahorras</a>
+                    </div>
+                    <p class="hero-precio">$15.000 por clase de 30 minutos</p>
+                </div>
+
+                <!-- Pizarra: la ecuación se "escribe" paso a paso con CSS -->
+                <div class="tablero" aria-label="Ejemplo de ecuación resuelta paso a paso">
+                    <ol>
+                        <li class="paso-tiza">2x + 6 = 14</li>
+                        <li class="paso-tiza">2x = 14 − 6 <small>restamos 6</small></li>
+                        <li class="paso-tiza">2x = 8</li>
+                        <li class="paso-tiza">x = 4 ✓ <small>¡entendido!</small></li>
+                    </ol>
+                    <!-- Imagen 1 -->
+                    <img src="img/mateo.png" alt="Ilustración de Mateo, estudiante de bachillerato con una duda de matemáticas">
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== BENEFICIOS (3, enfocados en resultados) ===== -->
+        <section class="seccion">
+            <div class="contenedor">
+                <h2>Lo que logras con una micro-clase</h2>
+                <div class="fila-tarjetas">
+                    <article class="tarjeta">
+                        <div class="icono fondo-celeste" aria-hidden="true">⚡</div>
+                        <h3>Entiende el tema hoy</h3>
+                        <p>En 30 minutos resolvemos la duda puntual que te tiene bloqueado, con ejercicios como los de tu examen.</p>
+                    </article>
+                    <article class="tarjeta">
+                        <div class="icono fondo-rosa" aria-hidden="true">⏰</div>
+                        <h3>Agenda en tu horario</h3>
+                        <p>Eliges el día y la hora, incluso para el mismo día. Te conectas desde tu casa por videollamada.</p>
+                    </article>
+                    <article class="tarjeta">
+                        <div class="icono fondo-verde" aria-hidden="true">💸</div>
+                        <h3>Paga solo lo que usas</h3>
+                        <p>Sin paquetes ni mensualidades. Cada clase cuesta $15.000 y la pagas por Nequi.</p>
+                    </article>
+                </div>
+                <!-- Incentivo para registrarse -->
+                <div class="incentivo">
+                    <span>🎁 Agenda tu primera clase y recibe gratis una guía de ejercicios resueltos de tu tema.</span>
+                    <a href="contacto.html" class="btn btn-secundario">Quiero mi guía</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CÓMO FUNCIONA (lista ordenada) ===== -->
+        <section class="seccion">
+            <div class="contenedor">
+                <h2>¿Cómo funciona?</h2>
+                <ol class="lista-pasos">
+                    <li><strong>Agendas.</strong> Llenas el formulario con tu tema y la fecha de tu examen.</li>
+                    <li><strong>Confirmamos.</strong> Te escribimos por WhatsApp para fijar la hora.</li>
+                    <li><strong>Pagas.</strong> $15.000 por Nequi, solo por esa clase.</li>
+                    <li><strong>Aprendes.</strong> Te conectas por Google Meet y resolvemos tu duda paso a paso.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ===== TABLA COMPARATIVA ===== -->
+        <section class="seccion">
+            <div class="contenedor">
+                <h2>Refuerzo Express vs. academia tradicional</h2>
+                <div class="tabla-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspecto</th>
+                                <th>Refuerzo Express</th>
+                                <th>Academia tradicional</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Forma de pago</td>
+                                <td class="col-destacada">Por sesión ($15.000)</td>
+                                <td>Mensualidad o paquete</td>
+                            </tr>
+                            <tr>
+                                <td>Duración</td>
+                                <td class="col-destacada">30 minutos, directo al tema</td>
+                                <td>1 a 2 horas por clase</td>
+                            </tr>
+                            <tr>
+                                <td>Horario</td>
+                                <td class="col-destacada">Tú lo eliges, incluso el mismo día</td>
+                                <td>Fijo, varios días a la semana</td>
+                            </tr>
+                            <tr>
+                                <td>Lugar</td>
+                                <td class="col-destacada">Desde tu casa por videollamada</td>
+                                <td>Hay que desplazarse</td>
+                            </tr>
+                            <tr>
+                                <td>Atención</td>
+                                <td class="col-destacada">1 a 1, sin pena de preguntar</td>
+                                <td>Grupal</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CALCULADORA DE AHORRO (funciona con script.js) ===== -->
+        <section class="seccion" id="calculadora">
+            <div class="contenedor">
+                <h2>¿Cuánto ahorras con nosotros?</h2>
+                <div class="calculadora">
+                    <form id="formCalculadora" novalidate>
+                        <div class="campo">
+                            <label for="numClases">¿Cuántas clases necesitas este mes?</label>
+                            <input type="number" id="numClases" min="1" max="20" value="4" required>
+                            <span class="error-msg" id="error-numClases"></span>
+                        </div>
+                        <div class="campo">
+                            <label for="mensualidad">¿Cuánto cobra una academia al mes? (COP)</label>
+                            <input type="number" id="mensualidad" min="1000" step="1000" value="180000" required>
+                            <span class="error-msg" id="error-mensualidad"></span>
+                        </div>
+                        <button type="submit" class="btn btn-principal">Calcular</button>
+                    </form>
+                    <div class="resultado" id="resultadoCalculadora" aria-live="polite">
+                        <p>Escribe tus datos y presiona <strong>Calcular</strong> para comparar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PARA PADRES (imagen 2) ===== -->
+        <section class="seccion">
+            <div class="contenedor dos-columnas">
+                <!-- Imagen 2 -->
+                <img class="foto-circulo" src="img/carmen.png" alt="Ilustración de Carmen, mamá profesional que organiza el refuerzo de su hijo desde el celular">
+                <div>
+                    <h2>¿Eres mamá o papá?</h2>
+                    <p class="texto-intro">Sabemos que no siempre hay tiempo para sentarse a repasar matemáticas. Tú agendas y pagas desde el celular; nosotros nos encargamos de que tu hijo llegue preparado al examen.</p>
+                    <a href="contacto.html" class="btn btn-principal">Agendar para mi hijo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== VIDEO INCRUSTADO ===== -->
+        <section class="seccion">
+            <div class="contenedor">
+                <h2>Así se ve una explicación paso a paso</h2>
+                <div class="video">
+                    <iframe src="https://www.youtube-nocookie.com/embed/sSfO1CsKJ4g" title="Video: qué es factorizar, explicado paso a paso" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <p class="credito">Video de ejemplo tomado de YouTube: «Qué es factorizar», canal Matemáticas profe Alex.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== Pie de página ===== -->
+    <footer>
+        <div class="contenedor">
+            <div>
+                <p><strong>Refuerzo Express</strong>: micro-clases de matemáticas en Bogotá.</p>
+                <p>Daniela Fernandez y Luis Cartagena, proyecto académico CUN 2026.</p>
+            </div>
+            <div>
+                <nav aria-label="Menú del pie">
+                    <a href="index.html">Inicio</a>
+                    <a href="servicios.html">Temas y opiniones</a>
+                    <a href="contacto.html">Agenda tu clase</a>
+                </nav>
+                <p>Tus datos solo se usan para agendar tu clase.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Programación del lado del cliente -->
+    <script src="script.js"></script>
+</body>
+</html>
