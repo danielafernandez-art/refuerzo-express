@@ -417,12 +417,18 @@ if (quiz) {
 
 
 /* =========================================================
-   7. CONTADOR DE VISITAS (solo cuando el sitio está en Vercel)
-   Carga Vercel Web Analytics para medir cuántas personas visitan.
+   7. CONTADOR DE VISITAS (GoatCounter, funciona en GitHub Pages)
+   Cada vez que alguien abre una página se registra una visita
+   en el panel https://refuerzoexpress.goatcounter.com
+   No usa cookies ni guarda datos personales.
    ========================================================= */
-if (location.hostname.endsWith("vercel.app")) {
-    const analitica = document.createElement("script");
-    analitica.defer = true;
-    analitica.src = "/_vercel/insights/script.js";
-    document.head.appendChild(analitica);
+const CODIGO_GOATCOUNTER = "refuerzoexpress";
+
+// Solo cuenta en el sitio publicado, no al abrir los archivos en el computador.
+if (location.protocol.startsWith("http") && location.hostname !== "localhost") {
+    const contador = document.createElement("script");
+    contador.async = true;
+    contador.src = "https://gc.zgo.at/count.js";
+    contador.dataset.goatcounter = "https://" + CODIGO_GOATCOUNTER + ".goatcounter.com/count";
+    document.head.appendChild(contador);
 }

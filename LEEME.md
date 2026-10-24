@@ -19,5 +19,8 @@ La PRIMERA vez que alguien envía un formulario, FormSubmit manda un correo de a
 hay que abrirlo y confirmar. Desde ahí, cada registro llega al correo.
 
 ## Cómo se miden las visitas
-Si el sitio se publica en Vercel, script.js carga Vercel Web Analytics automáticamente.
-Hay que activarlo una vez en el panel de Vercel: proyecto > Analytics > Enable.
+El sitio está publicado en GitHub Pages: https://danielafernandez-art.github.io/refuerzo-express/
+script.js carga GoatCounter (gratuito, sin cookies), que registra cada visita.
+Las estadísticas se ven en https://refuerzoexpress.goatcounter.com (visitantes únicos,
+páginas vistas, país, dispositivo y de dónde llegaron). Se pueden exportar a CSV
+desde Settings > Export para el informe del plan de negocio.
